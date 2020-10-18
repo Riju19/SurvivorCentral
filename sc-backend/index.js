@@ -1,11 +1,63 @@
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const PORT = process.env.PORT || 3000;
 const db = require("./models/");
-const express = require("express"); // our express server
-const app = express(); // generate an app object
-const bodyParser = require("body-parser"); // requiring the body-parser
-const PORT = process.env.PORT || 3000; // port that the server is running on => localhost:3000
-app.use(bodyParser.json()); // telling the app that we are going to use json to handle incoming payload
+
+app.use(bodyParser.json());
+
+function success(res, payload) {
+  return res.status(200).json(payload);
+}
+
+app.get("/responses", async (req, res, next) => {
+  try {
+    const responses = await db.Response.find({});
+    return success(res, responses);
+  } catch (err) {
+    next({ status: 400, message: "failed to get responses" });
+  }
+});
+
+app.post("/response", async (req, res, next) => {
+  try {
+    const response = await db.Response.create(req.body);
+    return success(res, response);
+  } catch (err) {
+    next({ status: 400, message: "failed to create response" });
+  }
+});
+
+app.put("/response/:id", async (req, res, next) => {
+  try {
+    const response = await db.Response.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    return success(res, response);
+  } catch (err) {
+    next({ status: 400, message: "failed to update response" });
+  }
+});
+app.delete("/response/:id", async (req, res, next) => {
+  try {
+    await db.Response.findByIdAndRemove(req.params.id);
+    return success(res, "response deleted!");
+  } catch (err) {
+    next({ status: 400, message: "failed to delete response" });
+  }
+});
+
+app.use((err, req, res, next) => {
+  return res.status(err.status || 400).json({
+    status: err.status || 400,
+    message: err.message || "there was an error processing request",
+  });
+});
 
 app.listen(PORT, () => {
-  // listening on port 3000
-  console.log(`listening on port ${PORT}`); // print this when the server starts
+  console.log(`listening on port ${PORT}`);
 });
