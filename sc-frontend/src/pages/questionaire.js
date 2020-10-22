@@ -178,8 +178,28 @@ export default class Questionaire extends Component {
     const questionToLoad;
     // Chekc subq
     if (this.state.subq){
-      // We need to load the sub-question
-      this.setState({index: index + 1});
+      // The next question is a sub-q, so it depends on the user's response
+      const usersResponse = this.state.questions[this.state.index].response;
+      switch(this.state.index){
+        case 1:
+          if (usersResponse == 0){
+            // Proceed to Question 2B
+            this.setState({index: index + 1});
+
+          } else if (usersResponse == 1) {
+            // TO-DO: recommend resources
+          } else {
+            // proceed to question 3
+          }
+          break;
+        case 2:
+          break;
+        case 4:
+          break;
+        default:
+            
+      }
+
       // this variable will be placed in the component that renders the text
       questionToLoad = questions[this.state.index];
       this.setState({subq: false});
@@ -188,7 +208,7 @@ export default class Questionaire extends Component {
     }
     else {
       // We need to skip the sub-question
-      this.setState({index: index + 2});
+      this.setState({index: index + 1});
       questionToLoad = questions[this.state.index];
       // Render the new question...
       return;
@@ -198,7 +218,7 @@ export default class Questionaire extends Component {
   // This function should be called when the user picks a response, and it should be sent the response
   onResponse(response){
     let newQuestions = questions;
-    questions[this.state.index].response = response;
+    newQuestions[this.state.index].response = response;
 
     // Save the new response in state
     this.setState({
