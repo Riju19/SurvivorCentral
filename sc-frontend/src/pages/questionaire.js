@@ -174,7 +174,6 @@ export default class Questionaire extends Component {
       subq = true;
     }
 
-    const questionToLoad;
     // Chekc subq
     if (subq){
       // The next question is a sub-q, so it depends on the user's response
@@ -195,21 +194,27 @@ export default class Questionaire extends Component {
           break;
         case 4:
           break;
+        case 5:
+          break;
+        case 9:
+          break;
+        case 11:
+          break;
+        case 12:
+          break;
+        case 13:
+          break;
         default:
             
       }
 
-      // this variable will be placed in the component that renders the text
-      questionToLoad = questions[this.state.index];
       subq = false;
-      // Render the new question...
       return;
     }
     else {
       // We need to skip the sub-question
       this.setState({index: index + 1});
-      questionToLoad = questions[this.state.index];
-      // Render the new question...
+      // Changing index in state will rerender the component with the new question
       return;
     }
   }
@@ -229,7 +234,7 @@ export default class Questionaire extends Component {
     if(this.state.index = numberOfQuestions - 1){
       // There are no more questions, here we'll do 2 things:
       // 1. Push the questions array in state to the database
-      // 2. Redirect the user back to our main site
+      // 2. Redirect the user to the resources page
     } else {
       // Call the questionManager function to load the next question
       this.questionManager();
@@ -237,6 +242,8 @@ export default class Questionaire extends Component {
   }
 
   // Note for Zoey: The 'questionToLoad' variable will hold the question text - render that to the screen
+  // EDIT: I think it will be easier to render: questions[this.state.index].question to the screen (this way when I change index in state, 
+  // it will correctly rerender the right question). Therefore, I removed the questionToLoad variable.
   render() {
     return <div>questionaire</div>;
   }
