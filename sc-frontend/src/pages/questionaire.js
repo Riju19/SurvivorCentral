@@ -147,7 +147,22 @@ let questions = [
 export default class Questionaire extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+
+    // Added the questions to state
+    this.state = {
+      questions: questions
+    };
+  }
+
+  // This function will fire off when the componenet mounts, 
+  // we can have it call the function that loads questions
+  componentDidMount(){
+    // Load first question
+  }
+
+  // Control the question flow
+  questionManager(){
+    
   }
 
   render() {
