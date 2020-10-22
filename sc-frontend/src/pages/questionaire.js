@@ -10,87 +10,105 @@ let questions = [
   {
     // Question 1
     question: "What State are you from?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 2
     question: "Are you a survivor of domestic violence, sexual assault or both?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Sub-question - dependent on Q2
     question: "Did the person who sexually assaulted you have HIV/Aids, or are you unsure of the HIV/Aids status of the person who assaulted you?",
-    response: ""
+    responseChoices: "",
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 3
     question: "Do you have an open case with the police / Do you have any interest in opening a police report?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Sub-question - dependent on Q3
     question: "If the offender is in custody, or possibly expected to be in custody at some point: Would you like to get immediate updates when the offender's custody status changes?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 4
     question: "Do you have or live with any children?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 5
     question: "Were children present (anywhere in the household) during any of the incidents?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Sub-question - dependent on Q5
     question: "Were children ever recipients of physical, verbal or emotional abuse?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 6
     question: "Did you ever experience or face threats of physical violence (personal injury, propert damage, etc) OR have a family member pass away from violence?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Sub-question - dependent on Q6
     question: "Have you ever filed a police report within 10 days of the incident?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Sub-question - dependent on previous sub-question
     question: "Would you be interested in potentailly filing a police report? If so, this would make you eligble for up to $25,000 for medical expenses, psychological counseling, relocation aid and more.",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 7
     question: "Are you under the age of 18?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 8
     question: "Would you be interested in free and confidential psychological counseling and therapy resources?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 9
     question: "Would you be interested in clinical/advocacy services?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 10
     question: "Do you fear for your own physical safety (and/or your child's safety) from your abuser, and would you like to legally prevent your abuser from contacting/coming near you?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Sub-question - dependent on Q10
     question: "Do you currently have an open case with the police / do you have any interest in opening a police report?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 11
     question: "Are you currently an undocumented immigrant?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 12
@@ -100,47 +118,56 @@ let questions = [
   {
     // Sub-question - dependent on Q12
     question: "Would you be interested in free legal counseling to evaluate your options and potentially get restitution?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 13
     question: "Do you want free legal assistance?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Sub-question - dependent on Q13
     question: "Would you be interested in having an attorney to sue the offender through a CIVIL case?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Sub-question - dependent on previous sub-question
     question: "Do you identify as low income?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 14
     question: "Are you currently experiencing homelessness?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // sub-question - dependent on Q14
     question: "Do you need immediate relocation support to escape any abusive/unsafe situations?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 15
     question: "Do you identify as LGBTQ?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 16
     question: "Do you have difficulty speaking or hearing?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   },
   {
     // Question 17
     question: "Do you have any suicidal thoughts?",
-    response: ""
+    responseChoices: "",
+    usersResponse: ""
   }
 ]
 
@@ -177,7 +204,7 @@ export default class Questionaire extends Component {
     // Chekc subq
     if (subq){
       // The next question is a sub-q, so it depends on the user's response
-      const usersResponse = this.state.questions[this.state.index].response;
+      const { usersResponse } = this.state.questions[this.state.index] ;
       switch(this.state.index){
         case 1:
           if (usersResponse == 0){
