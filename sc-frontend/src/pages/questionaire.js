@@ -149,8 +149,12 @@ export default class Questionaire extends Component {
     super(props);
 
     // Added the questions to state
+    // index will keep track of which question to load
+    // subq tells the function to load a sub-question
     this.state = {
-      questions: questions
+      questions: questions,
+      index: 0,
+      subq: false
     };
   }
 
@@ -158,13 +162,42 @@ export default class Questionaire extends Component {
   // we can have it call the function that loads questions
   componentDidMount(){
     // Load first question
+    this.questionManager();
   }
 
   // Control the question flow
   questionManager(){
-    
+    // We need to check if the NEXT question is a sub-question
+    // Questions that have sub-questions: 2, 3, 5, 6, 10, 12, 13, 14 (index starts with zero)
+    const qsWithSubQs = [1, 2, 4, 5, 9, 11, 12, 13]
+    if (qsWithSubQs.includes(this.state.index)){
+      // It does, which means the next Q is a sub-q
+      this.setState({subq: true})
+    }
+
+    const questionToLoad;
+    // Chekc subq
+    if (this.state.subq){
+      // We need to load the sub-question
+      this.setState({index: index + 1});
+      // this variable will be placed in the component that renders the text
+      questionToLoad = this.state.questions[this.state.index];
+      this.setState({subq: false});
+      // Render the new question...
+      return;
+    }
+    else {
+      // We need to skip the sub-question
+      this.setState({index: index + 2});
+      questionToLoad = this.state.questions[this.state.index];
+      // Render the new question...
+      return;
+    }
   }
 
+  
+
+  // Note for Zoey: The 'questionToLoad' variable will hold the question text - render that to the screen
   render() {
     return <div>questionaire</div>;
   }
