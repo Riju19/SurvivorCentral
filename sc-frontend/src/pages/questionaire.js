@@ -205,8 +205,16 @@ export default class Questionaire extends Component {
       questions: newQuestions
     })
     
-    // Call the questionManager function to load the next question
-    this.questionManager();
+    // Now check if the user answered the last question, or if there are more questions:
+    const numberOfQuestions = questions.length;
+    if(this.state.index = numberOfQuestions - 1){
+      // There are no more questions, here we'll do 2 things:
+      // 1. Push the questions array in state to the database
+      // 2. Redirect the user back to our main site
+    } else {
+      // Call the questionManager function to load the next question
+      this.questionManager();
+    }
   }
 
   // Note for Zoey: The 'questionToLoad' variable will hold the question text - render that to the screen
