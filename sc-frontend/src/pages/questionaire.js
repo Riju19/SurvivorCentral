@@ -181,7 +181,7 @@ export default class Questionaire extends Component {
       // We need to load the sub-question
       this.setState({index: index + 1});
       // this variable will be placed in the component that renders the text
-      questionToLoad = this.state.questions[this.state.index];
+      questionToLoad = questions[this.state.index];
       this.setState({subq: false});
       // Render the new question...
       return;
@@ -189,13 +189,25 @@ export default class Questionaire extends Component {
     else {
       // We need to skip the sub-question
       this.setState({index: index + 2});
-      questionToLoad = this.state.questions[this.state.index];
+      questionToLoad = questions[this.state.index];
       // Render the new question...
       return;
     }
   }
 
-  
+  // This function should be called when the user picks a response, and it should be sent the response
+  onResponse(response){
+    let newQuestions = questions;
+    questions[this.state.index].response = response;
+
+    // Save the new response in state
+    this.setState({
+      questions: newQuestions
+    })
+    
+    // Call the questionManager function to load the next question
+    this.questionManager();
+  }
 
   // Note for Zoey: The 'questionToLoad' variable will hold the question text - render that to the screen
   render() {
