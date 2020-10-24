@@ -246,8 +246,7 @@ export default class Questionaire extends Component {
     };
   }
 
-  // This function will fire off when the componenet mounts, 
-  // we can have it call the function that loads questions
+  // This function will fire off when the componenet mounts
   componentDidMount(){
     // Load first question
     this.questionManager();
@@ -255,145 +254,304 @@ export default class Questionaire extends Component {
 
   // Control the question flow
   questionManager(){
-    let subq = false;
-    // We need to check if the NEXT question is a sub-question
-    // Questions that have sub-questions: 2, 3, 5, 6, 10, 12, 13, 14 (index starts with zero)
-    const qsWithSubQs = [1, 3, 6, 8, 9, 10, 12, 14, 16, 17, 19, 20, 22] // By index
-    if (qsWithSubQs.includes(this.state.index)){
-      // It does, which means the next Q is a sub-q
-      subq = true;
-    }
+      
+    const { usersResponse } = this.state.questions[this.state.index] ;
+    let under18 = false;
+    let question3 = false;
+    switch(this.state.index){
+      case 0:
+        // Save the users location
+        break;
+      case 1:
+        if (usersResponse == 0){
+          // SA, Proceed to Question 2B
+          this.setState({index: index + 1});
+        } else if (usersResponse == 1) {
+          // DV, recommend resources, then proceed to Q3
+          resources[nationalDomesticViolenceHotline] = true;
+          resources[nationalResourceCenterOnDomesticViolence] = true;
+          resources[officeForVictimsOfCrime] = true;
+          this.setState({index: index + 2});
+        } else if (usersResponse == 2) {
+          // Both; show resources and then question 2B
+          resources[nationalDomesticViolenceHotline] = true;
+          resources[nationalResourceCenterOnDomesticViolence] = true;
+          resources[officeForVictimsOfCrime] = true;
+          this.setState({index: index + 1});
+        } else {
+          // None of the above, proceed to question 3
+          this.setState({index: index + 2});
+        }
+        break;
 
-    if (subq){
-      // The next question is a sub-q, so it depends on the user's response
-      const { usersResponse } = this.state.questions[this.state.index] ;
-      switch(this.state.index){
-        case 1:
-          if (usersResponse == 0){
-            // Proceed to Question 2B
-            this.setState({index: index + 1});
-          } else if (usersResponse == 1) {
-            // TO-DO: recommend resources
-          } else if (usersResponse == 2) {
-            // Both; show resources and then question 2B
-          } else {
-            // None of the above, proceed to question 3
-            this.setState({index: index + 2});
+      case 2:
+        // Question 2B
+        if (usersResponse == 0) {
+          // yes
+          resources["hivAidsresources"] = true;
+        }
+        resources[dayOne] = true;
+        resources[sojournerHouse] = true;
+        resources[elizabaethBuffamChase] = true;
+        resources[riChildrenAdvocacyCenter] = true;
+        // Proceed to Q3
+        this.setState({index: index + 1});
+        break
+
+      case 3:
+        // Question 3
+        if (usersResponse == 0) {
+          // Resources and then Q3B
+          question3 = true;
+          resources[leaAndCourtAdvocateInfo] = true;
+          this.setState({index: index + 1});
+        } else {
+          // Proceed to Q4
+          this.setState({index: index + 2});
+        }
+        break;
+
+      case 4:
+        // Question 3B
+        if (usersResponse == 0) {
+          // Resources, then Q4
+          resources[vineCrimeVictimAdvocate] = true;
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 5:
+        // Question 4
+        if (usersResponse == 0) {
+          // Q5
+          this.setState({index: index + 1});
+        } else {
+          // Q6
+          this.setState({index: index + 3});
+        }
+        break;
+
+      case 6:
+        // Question 5
+        if (usersResponse == 0) {
+          // Q5b
+          this.setState({index: index + 1});
+        } else {
+          // Q6
+          this.setState({index: index + 2});
+        }
+        break;
+
+      case 7:
+        // Question 5B
+        if (usersResponse == 0) {
+          // Resources, then Q6
+          resources[dcyf] = true;
+          resources[nationalCenterForVictimsOfCrime] = true;
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 8:
+        // Question 6
+        if (usersResponse == 0) {
+          // Q6B
+          this.setState({index: index + 1});
+        } else {
+          // Q7
+          this.setState({index: index + 3});
+        }
+        break;
+
+      case 9:
+        // Question 6B
+        if (usersResponse == 0) {
+          // Resources, then Q7
+          resources[riCvcp] = true;
+          this.setState({index: index + 2});
+        } else {
+          // Q6C
+          this.setState({index: index + 1});
+        }
+        break;
+
+      case 10:
+        // Question 6C
+        if (usersResponse == 0) {
+          // Resources, then Q7
+          resources[riCvcp] = true;
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 11:
+        // Question 7
+        if (usersResponse == 0) {
+          // The user is under 18
+          under18 = true;
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 12:
+        // Question 8
+        if (usersResponse == 0) {
+          if (under18) {
+            resources[bradleyHospitalAndTidesFamilyService] = true;
           }
-          break;
-        case 3:
-          if (usersResponse == 0) {
-            // First show LEA and Court advocate info/contacts
-            // Next, proceed to question 3B
-            this.setState({index: index + 1});
-          } else {
-            // Proceed to question 4
-            this.setState({index: index + 2});
+          if (question3) {
+            resources[familyServicesOfRiAndFamilyCommunityCarePartnership] = true;
           }
-          break;
-        case 6:
-          if (usersResponse == 0) {
-            // Proceed to question 6
-            this.setState({index: index + 3});
-          } else {
-            // Proceed to question 5
-            this.setState({index: index + 1});
-          }
-          break;
-        case 8:
-          if (usersResponse == 0) {
-            // Proceed to question 5B
-            this.setState({index: index + 1});
-          } else {
-            // Proceed to question 6
-            this.setState({index: index + 2});
-          }
-          break;
-        case 9:
-          if (usersResponse == 0) {
-            // Proceed to question 6B
-            this.setState({index: index + 1});
-          } else {
-            // Proceed to question 7
-            this.setState({index: index + 3});
-          }
-          break;
-        case 10:
-          if (usersResponse == 0) {
-            // Reccomend resources
-          } else {
-            // Proceed to question 6C
-            this.setState({index: index + 1});
-          }
-          break;
-        case 12:
-          if (usersResponse == 0) {
-            // Recommend resoucres
-          } else {
-            // Proceed to question 9
-            this.setState({index: index + 1});
-          }
-          break
-        case 14:
-          if (usersResponse == 0) {
-            // TRO resouces, then proceed to question 10B
-            this.setState({index: index + 1});
-          } else {
-            // Proceed to question 11
-            this.setState({index: index + 2});
-          }
-          break;
-        case 16:
-          if (usersResponse == 0) {
-            // Undocumented info
-          } else {
-            // Proceed to question 12
-            this.setState({index: index + 1});
-          }
-          break;
-        case 17:
-          if (usersResponse == 0) {
-            //Trafficking survivor resources
-            // Proceed to question 12B
-            this.setState({index: index + 1});
-          } else {
-            // Proceed to question 13
-            this.setState({index: index + 2});
-          }
-          break;
-        case 19:
-          if (usersResponse == 0) {
-            // Legal Assistance resources
-            // Proceed to question 13B
-            this.setState({index: index + 1});
-          } else {
-            // Proceed to question 14
-            this.setState({index: index + 2});
-          }
-          break;
-        case 20:
-          if (usersResponse == 0) {
-            // Homelessness resources
-          } else {
-            // Proceed to question 14B
-            this.setState({index: index + 1});
-          }
-          break;
-        case 22:
-          break;
-        default:
-            
+          resources[dvPartnersUnderRICADVAndCounselingResources] = true;
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 13:
+        // Question 9
+        if (usersResponse == 0) {
+          // ???????? clinical/advocacy services
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 14:
+        // Question 10
+        if (usersResponse == 0) {
+          // Resources, then Q10B
+          resources[TRO] = true;
+          this.setState({index: index + 1});
+        } else {
+          // Q11
+          this.setState({index: index + 2});
+        }
+        break;
+
+      case 15:
+        // Question 10B
+        if (usersResponse == 0) {
+          // ???? Open case with police
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 16:
+        // Question 11
+        if (usersResponse == 0) {
+          // Resources, then Q12
+          resources[undocumentedInfo] = true;
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 17:
+        // Question 12
+        if (usersResponse == 0) {
+          // Resources, then Q12B
+          resources[trafickingSurvivorResources] = true;
+          this.setState({index: index + 1});
+        } else {
+          // Q13
+          this.setState({index: index + 2});
+        }
+        break;
+
+      case 18:
+        // Question 12B
+        if (usersResponse == 0) {
+          resources[legalCounselingRestitutionLink] = true;
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 19:
+        // Question 13
+        if (usersResponse == 0) {
+          // Resources, then Q13B
+          resources[legalAssistanceResources] = true;
+          this.setState({index: index + 1});
+        } else {
+          // Q14
+          this.setState({index: index + 3});
+        }
+        break;
+
+      case 20:
+        // Question 13B
+        if (usersResponse == 0) {
+          // Resources, then Q13C
+          resources[victimbarLink] = true
+          this.setState({index: index + 1});
+        } else {
+          // Q14
+          this.setState({index: index + 2});
+        }
+        break;
+
+      case 21:
+        // Question 13C
+        if (usersResponse == 0) {
+          // Resources, then Q14
+          resources[volunteerLawyerProgram] = true;
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 22:
+        // Question 14
+        if (usersResponse == 0) {
+          // Resources, then Q15
+          resources[homelessnessResources] = true;
+          this.setState({index: index + 2});
+        } else {
+          // Q14B
+          this.setState({index: index + 1});
+        }
+        break;
+      
+      case 23:
+        // Question 14B
+        if (usersResponse == 0) {
+          // Resources, then Q15
+          resources[helplineRI] = true;
+          resources[CAP] = true;
+          resources[DHS] = true;
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 24:
+        // Question 15
+        if (usersResponse == 0) {
+          // Resources, then Q16
+          resources[GLBTQDomesticViolenceProject] = true;
+          resources[GLAD] = true;
+          resources[youthPrideInc] = true;
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 25:
+        // Question 16
+        if (usersResponse == 0) {
+          // Resources, then Q17
+          resources[relay] = true;
+        }
+        this.setState({index: index + 1});
+        break;
+
+      case 26:
+        // Question 17
+        if (usersResponse == 0) {
+          // Resources, then form is completed
+          resources[NSPL] = true
+          this.setState({index: index + 1});
+        }
+        break;
       }
-
-      subq = false;
+    
       return;
-    }
-    else {
-      // We need to skip the sub-question
-      this.setState({index: index + 1});
-      // Changing index in state will rerender the component with the new question
-      return;
-    }
+    
   }
 
   // This function should be called when the user picks a response, and it should be sent the response
@@ -408,7 +566,7 @@ export default class Questionaire extends Component {
     
     // Now check if the user answered the last question, or if there are more questions:
     const numberOfQuestions = questions.length;
-    if(this.state.index = numberOfQuestions - 1){
+    if (this.state.index = numberOfQuestions ){
       // There are no more questions, here we'll do 2 things:
       // 1. Push the questions array in state to the database
       // 2. Redirect the user to the resources page
