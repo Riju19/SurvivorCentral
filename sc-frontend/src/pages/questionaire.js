@@ -11,99 +11,98 @@ let questions = [
     // index 0
     // Question 1
     question: "What State are you from?",
-    responseChoices: "",
+    responseChoices: "", // Either a states dropdown or a textbox
     usersResponse: ""
   },
   {
     // index 1
     // Question 2
     question: "Are you a survivor of domestic violence, sexual assault or both?",
-    responseChoices: "",
+    responseChoices: ["Sexual Assault", "Domestic Violence", "Both", "Neither"],
     usersResponse: ""
   },
   {
     // index 2
     // Sub-question - dependent on Q2
     question: "Did the person who sexually assaulted you have HIV/Aids, or are you unsure of the HIV/Aids status of the person who assaulted you?",
-    responseChoices: "",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 3
     // Question 3
     question: "Do you have an open case with the police / Do you have any interest in opening a police report?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 4
     // Sub-question - dependent on Q3
     question: "If the offender is in custody, or possibly expected to be in custody at some point: Would you like to get immediate updates when the offender's custody status changes?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 5
     // Question 4
     question: "Do you have or live with any children?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 6
     // Question 5
     question: "Were children present (anywhere in the household) during any of the incidents?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 7
     // Sub-question - dependent on Q5
     question: "Were children ever recipients of physical, verbal or emotional abuse?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 8
     // Question 6
     question: "Did you ever experience or face threats of physical violence (personal injury, propert damage, etc) OR have a family member pass away from violence?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 9
     // Sub-question - dependent on Q6
     question: "Have you ever filed a police report within 10 days of the incident?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 10
     // Sub-question - dependent on previous sub-question
     question: "Would you be interested in potentailly filing a police report? If so, this would make you eligble for up to $25,000 for medical expenses, psychological counseling, relocation aid and more.",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 11
     // Question 7
     question: "Are you under the age of 18?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 12
     // Question 8
     question: "Would you be interested in free and confidential psychological counseling and therapy resources?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 13
     // Question 9
     question: "Would you be interested in clinical/advocacy services?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
@@ -117,83 +116,84 @@ let questions = [
     // index 15
     // Sub-question - dependent on Q10
     question: "Do you currently have an open case with the police / do you have any interest in opening a police report?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 16
     // Question 11
     question: "Are you currently an undocumented immigrant?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 17
     // Question 12
     question: "Are you a survivor of human trafficking?",
+    responseChoices: ["Yes", "No"],
     response: ""
   },
   {
     // index 18
     // Sub-question - dependent on Q12
     question: "Would you be interested in free legal counseling to evaluate your options and potentially get restitution?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 19
     // Question 13
     question: "Do you want free legal assistance?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 20
     // Sub-question - dependent on Q13
     question: "Would you be interested in having an attorney to sue the offender through a CIVIL case?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 21
     // Sub-question - dependent on previous sub-question
     question: "Do you identify as low income?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 22
     // Question 14
     question: "Are you currently experiencing homelessness?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 23
     // sub-question - dependent on Q14
     question: "Do you need immediate relocation support to escape any abusive/unsafe situations?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 24
     // Question 15
     question: "Do you identify as LGBTQ?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 25
     // Question 16
     question: "Do you have difficulty speaking or hearing?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   },
   {
     // index 26
     // Question 17
     question: "Do you have any suicidal thoughts?",
-    responseChoices: "",
+    responseChoices: ["Yes", "No"],
     usersResponse: ""
   }
 ];
