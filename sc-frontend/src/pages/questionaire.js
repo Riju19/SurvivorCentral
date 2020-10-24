@@ -196,7 +196,43 @@ let questions = [
     responseChoices: "",
     usersResponse: ""
   }
-]
+];
+
+let resources = {
+  hivAidsresources: false,
+  dayOne: false,
+  sojournerHouse: false,
+  elizabaethBuffamChase: false,
+  riChildrenAdvocacyCenter: false,
+  nationalDomesticViolenceHotline: false,
+  nationalResourceCenterOnDomesticViolence: false,
+  officeForVictimsOfCrime: false,
+  leaAndCourtAdvocateInfo: false,
+  vineCrimeVictimAdvocate: false,
+  dcyf: false,
+  nationalCenterForVictimsOfCrime: false,
+  riCvcp: false,
+  bradleyHospitalAndTidesFamilyService: false,
+  familyServicesOfRiAndFamilyCommunityCarePartnership: false,
+  dvPartnersUnderRICADVAndCounselingResources: false,
+  TRO: false,
+  undocumentedInfo: false,
+  trafickingSurvivorResources: false,
+  legalCounselingRestitutionLink: false,
+  legalAssistanceResources: false,
+  victimbarLink: false,
+  volunteerLawyerProgram: false,
+  homelessnessResources: false,
+  helplineRI: false,
+  CAP: false,
+  DHS: false,
+  GLBTQDomesticViolenceProject: false,
+  GLAD: false,
+  youthPrideInc: false,
+  relay: false,
+  NSPL: false
+
+}
 
 export default class Questionaire extends Component {
   constructor(props) {
