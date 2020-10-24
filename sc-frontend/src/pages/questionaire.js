@@ -222,7 +222,7 @@ export default class Questionaire extends Component {
     let subq = false;
     // We need to check if the NEXT question is a sub-question
     // Questions that have sub-questions: 2, 3, 5, 6, 10, 12, 13, 14 (index starts with zero)
-    const qsWithSubQs = [1, 3, 6, 8, 9, 14, 17, 19, 20, 22]
+    const qsWithSubQs = [1, 3, 6, 8, 9, 10, 12, 14, 16, 17, 19, 20, 22] // By index
     if (qsWithSubQs.includes(this.state.index)){
       // It does, which means the next Q is a sub-q
       subq = true;
@@ -245,24 +245,105 @@ export default class Questionaire extends Component {
             this.setState({index: index + 2});
           }
           break;
-        case 2:
+        case 3:
           if (usersResponse == 0) {
             // First show LEA and Court advocate info/contacts
             // Next, proceed to question 3B
             this.setState({index: index + 1});
+          } else {
+            // Proceed to question 4
+            this.setState({index: index + 2});
           }
           break;
-        case 4:
+        case 6:
+          if (usersResponse == 0) {
+            // Proceed to question 6
+            this.setState({index: index + 3});
+          } else {
+            // Proceed to question 5
+            this.setState({index: index + 1});
+          }
           break;
-        case 5:
+        case 8:
+          if (usersResponse == 0) {
+            // Proceed to question 5B
+            this.setState({index: index + 1});
+          } else {
+            // Proceed to question 6
+            this.setState({index: index + 2});
+          }
           break;
         case 9:
+          if (usersResponse == 0) {
+            // Proceed to question 6B
+            this.setState({index: index + 1});
+          } else {
+            // Proceed to question 7
+            this.setState({index: index + 3});
+          }
           break;
-        case 11:
+        case 10:
+          if (usersResponse == 0) {
+            // Reccomend resources
+          } else {
+            // Proceed to question 6C
+            this.setState({index: index + 1});
+          }
           break;
         case 12:
+          if (usersResponse == 0) {
+            // Recommend resoucres
+          } else {
+            // Proceed to question 9
+            this.setState({index: index + 1});
+          }
+          break
+        case 14:
+          if (usersResponse == 0) {
+            // TRO resouces, then proceed to question 10B
+            this.setState({index: index + 1});
+          } else {
+            // Proceed to question 11
+            this.setState({index: index + 2});
+          }
           break;
-        case 13:
+        case 16:
+          if (usersResponse == 0) {
+            // Undocumented info
+          } else {
+            // Proceed to question 12
+            this.setState({index: index + 1});
+          }
+          break;
+        case 17:
+          if (usersResponse == 0) {
+            //Trafficking survivor resources
+            // Proceed to question 12B
+            this.setState({index: index + 1});
+          } else {
+            // Proceed to question 13
+            this.setState({index: index + 2});
+          }
+          break;
+        case 19:
+          if (usersResponse == 0) {
+            // Legal Assistance resources
+            // Proceed to question 13B
+            this.setState({index: index + 1});
+          } else {
+            // Proceed to question 14
+            this.setState({index: index + 2});
+          }
+          break;
+        case 20:
+          if (usersResponse == 0) {
+            // Homelessness resources
+          } else {
+            // Proceed to question 14B
+            this.setState({index: index + 1});
+          }
+          break;
+        case 22:
           break;
         default:
             
