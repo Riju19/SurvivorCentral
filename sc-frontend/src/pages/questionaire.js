@@ -1,5 +1,7 @@
 //questionaire page
 import React, { Component } from "react";
+import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion"
+import "../index.css"
 
 // First thing I'm doing is creating the array of objects. Each object in the array will have two Properties:
 // 1. A question property, holding the actual question text
@@ -575,11 +577,19 @@ export default class Questionaire extends Component {
       this.questionManager();
     }
   }
-
+  onResponse(response){
+    let newQuestions = this.state.questions;
+    newQuestions[this.state.index].usersResponse = response;
+  }
   // Note for Zoey: The 'questionToLoad' variable will hold the question text - render that to the screen
   // EDIT: I think it will be easier to render: questions[this.state.index].question to the screen (this way when I change index in state, 
   // it will correctly rerender the right question). Therefore, I removed the questionToLoad variable.
+
   render() {
-    return <div>questionaire</div>;
+    return <>
+    <div className="questionCenter">
+    <SlidingQuestion questionObject={this.state.questions[this.state.index]}/>
+    </div>
+    </>;
   }
 }
