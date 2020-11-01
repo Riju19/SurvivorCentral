@@ -550,16 +550,11 @@ export default class Questionaire extends Component {
           this.setState({index: this.state.index + 1});
         }
         break;
-      }
-    
-      return;
-    
+      } 
   }
 
   // This function should be called when the user picks a response, and it should be sent the response
   onResponse=(response) => {
-    console.log("button clicked!")
-    console.log(response)
     let newQuestions = this.state.questions;
     newQuestions[this.state.index].usersResponse = response;
 
@@ -570,10 +565,11 @@ export default class Questionaire extends Component {
     
     // Now check if the user answered the last question, or if there are more questions:
     const numberOfQuestions = this.state.questions.length;
-    if (this.state.index === numberOfQuestions ){
+    if (this.state.index +1 === numberOfQuestions ){
       // There are no more questions, here we'll do 2 things:
       // 1. Push the questions array in state to the database
       // 2. Redirect the user to the resources page
+      
     } else {
       // Call the questionManager function to load the next question
       this.questionManager();
