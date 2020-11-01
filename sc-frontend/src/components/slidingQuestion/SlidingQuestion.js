@@ -6,28 +6,35 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(15),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+    answer: {
+      textAlign: 'center',
         },
+    root: {
+      textAlign: 'center',
+      padding: "5 rem",
+    }
   }));
 
-const SlidingQuestion = ({questionObject}) => { // input
+const SlidingQuestion = ({questionObject, buttonClick}) => { // input
     const classes = useStyles();
     const question = questionObject.question;
     const answer=questionObject.responseChoices;
+    console.log(questionObject);
+    console.log(buttonClick)
     return(
-        <Container component="main" maxWidth="xs">
-            <Typography component="h1" variant="h5">
+        <Container className={classes.root} component="main" maxWidth="xl">
+            <Typography component="h1" variant="h6">
                     {question}
             </Typography>       
+            <Grid container spacing={1}>
             {answer.map((answer,index) => (
-                <Button variant="contained" color="primary">
+               <Grid item xs={4}>
+                <Button variant="contained" color="primary" onClick={()=>buttonClick(index)}>
                   {answer}
                 </Button>
+                </Grid>
               ))}
+            </Grid>
         </Container>
     );
 }
