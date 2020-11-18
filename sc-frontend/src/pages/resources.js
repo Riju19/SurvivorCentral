@@ -41,6 +41,9 @@ export const Resources = (props) => {
   // I'm assuming right now that props.resources holds the resources object from the previos page
   return (
     <div>
+      <div>
+        <h1>Resources</h1>
+      </div>
       {props.resources.map((resource) => {
         // Render each resource if its value is 'true'
         {
