@@ -8,7 +8,7 @@ function Resource(props) {
       <ul>
         {Object.keys(props.details).map(function (keyName, keyIndex) {
           // use keyName to get current key's name
-          // and a[keyName] to get its value
+          // and props.details[keyName] to get its value
           return <li>{props.details[keyName]}</li>;
         })}
       </ul>

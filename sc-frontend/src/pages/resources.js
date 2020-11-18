@@ -91,7 +91,7 @@ export const Resources = () => {
       </div>
       {Object.keys(resources).map(function (keyName, keyIndex) {
         // use keyName to get current key's name
-        // and a[keyName] to get its value
+        // and resources[keyName] to get its value
         return resources[keyName] ? (
           <Resource
             name={keyName}
