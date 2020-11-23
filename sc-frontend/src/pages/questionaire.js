@@ -2,12 +2,13 @@
 import React, { Component } from "react";
 import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion"
 import "../index.css"
+import APIHelper from "../APIHelper.js"
 
 // First thing I'm doing is creating the array of objects. Each object in the array will have two Properties:
 // 1. A question property, holding the actual question text
 // 2. A response property, which will initially be empty
 // Note: Sub-questions are dependent on the answers of previous questions
-
+let userResponses = []; 
 export default class Questionaire extends Component {
   constructor(props) {
     super(props);
@@ -557,7 +558,7 @@ export default class Questionaire extends Component {
   onResponse=(response) => {
     let newQuestions = this.state.questions;
     newQuestions[this.state.index].usersResponse = response;
-
+    userResponses.push({"question":this.state.index, "answer":response})
     // Save the new response in state
     this.setState({
       questions: newQuestions
@@ -569,6 +570,17 @@ export default class Questionaire extends Component {
       // There are no more questions, here we'll do 2 things:
       // 1. Push the questions array in state to the database
       // 2. Redirect the user to the resources page
+
+      console.log("Storing values in Databse"+userResponses);
+      // fetch('http://localhost:3001/postResponses', {
+      //     method: 'post',
+      //     headers: {
+      //         'Accept': 'application/json',
+      //         'Content-Type': 'application/json'
+      //     },
+      //     body: JSON.stringify(userResponses)
+      // });
+      APIHelper.addResponses(userResponses)
       
     } else {
       // Call the questionManager function to load the next question

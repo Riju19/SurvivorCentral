@@ -27,7 +27,7 @@ const SlidingQuestion = ({questionObject, buttonClick}) => { // input
                     {question}
             </Typography>       
             <Grid container spacing={1}>
-            {answer.length == 0 && (<Button variant="contained" color="primary" onClick={()=>buttonClick(0)}>
+            {answer.length === 0 && (<Button variant="contained" color="primary" onClick={()=>buttonClick(0)}>
                   Next
                 </Button>)}
             {answer.length > 0 && (answer.map((answer,index) => (
