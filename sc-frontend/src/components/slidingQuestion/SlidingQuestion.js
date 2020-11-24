@@ -18,16 +18,15 @@ const useStyles = makeStyles((theme) => ({
 const SlidingQuestion = ({questionObject, buttonClick}) => { // input
     const classes = useStyles();
     const question = questionObject.question;
-    const answer=questionObject.responseChoices;
-    console.log(questionObject);
-    console.log(buttonClick)
+    const answer = questionObject.responseChoices;
+
     return(
-        <Container className={classes.root} component="main" maxWidth="xl">
+        <Container className = {classes.root} component="main" maxWidth="xl">
             <Typography component="h1" variant="h6">
                     {question}
             </Typography>       
             <Grid container spacing={1}>
-            {answer.length == 0 && (<Button variant="contained" color="primary" onClick={()=>buttonClick(0)}>
+            {answer.length === 0 && (<Button variant="contained" color="primary" onClick={()=>buttonClick(0)}>
                   Next
                 </Button>)}
             {answer.length > 0 && (answer.map((answer,index) => (
