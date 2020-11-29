@@ -1,32 +1,32 @@
 //questionaire page
 import React, { Component } from "react";
-import Button from '@material-ui/core/Button';
-import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion"
-import "../index.css"
-import {questions} from "../constants/questions.js"
-import {resources} from "../constants/resources.js"
+import Button from "@material-ui/core/Button";
+import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion";
+import "../index.css";
+import { questions } from "../constants/questions.js";
+import { resources } from "../constants/resources.js";
 
 export default class Questionaire extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      index: 1//current question
+      index: 1, //current question
     };
 
-    this.questions = questions; 
+    this.questions = questions;
     this.resources = resources;
   }
 
   // Control the question flow
   questionManager() {
-    const { usersResponse } = this.questions[this.state.index] ;
+    const { usersResponse } = this.questions[this.state.index];
     let under18 = false;
     let question3 = false;
     const index = this.state.index;
 
-    switch(index){
-      default: 
+    switch (index) {
+      default:
         console.log("Oh no! No case found");
         break;
 
@@ -34,10 +34,9 @@ export default class Questionaire extends Component {
         // Save the users location
         break;
       case 1:
-        if (usersResponse === 0){
+        if (usersResponse === 0) {
           // SA, Proceed to Question 2B
-          this.setState({index: index + 1});
-
+          this.setState({ index: index + 1 });
         } else if (usersResponse === 1) {
           // DV, recommend resources, then proceed to Q3
           this.resources["nationalDomesticViolenceHotline"] = true;
@@ -49,10 +48,10 @@ export default class Questionaire extends Component {
           this.resources["nationalDomesticViolenceHotline"] = true;
           this.resources["nationalResourceCenterOnDomesticViolence"] = true;
           this.resources["officeForVictimsOfCrime"] = true;
-          this.setState({index: index + 1});
+          this.setState({ index: index + 1 });
         } else {
           // None of the above, proceed to question 3
-          this.setState({index: index + 2});
+          this.setState({ index: index + 2 });
         }
         break;
 
@@ -236,7 +235,7 @@ export default class Questionaire extends Component {
         }
         this.setState({ index: index + 1 });
         break;
-      
+
       case 19:
         if (usersResponse === 0) {
           // Resources, then Q13B
@@ -289,7 +288,7 @@ export default class Questionaire extends Component {
           this.resources["CAP"] = true;
           this.resources["DHS"] = true;
         }
-        this.setState({index: index + 1});
+        this.setState({ index: index + 1 });
         break;
 
       case 24:
@@ -316,11 +315,11 @@ export default class Questionaire extends Component {
         // Question 17
         if (usersResponse === 0) {
           // Resources, then form is completed
-          this.resources["NSPL"] = true
-          this.setState({index: index + 1});
+          this.resources["NSPL"] = true;
+          this.setState({ index: index + 1 });
         }
         break;
-      } 
+    }
   }
 
   // This function should be called when the user picks a response, and it should be sent the response
@@ -336,33 +335,35 @@ export default class Questionaire extends Component {
 
     // Now check if the user answered the last question, or if there are more questions:
     const numberOfQuestions = this.questions.length;
-    if ((index === numberOfQuestions)) {
+    if (index === numberOfQuestions) {
       // There are no more questions, here we'll do 2 things:
       // 1. Push the questions array in state to the database
       // 2. Redirect the user to the this.resources page, WITH the resources object
-      this.setState({index:index+1});
-
+      this.setState({ index: index + 1 });
     } else {
       // Call the questionManager function to load the next question
       this.questionManager();
     }
-  }
+  };
 
   render() {
     const index = this.state.index;
-    return(
-    <>
-        {questions.length > index && 
-        <div className="questionCenter">
-          <SlidingQuestion questionObject={this.questions[index]} buttonClick={this.onResponse}/>
-        </div>
-        }
-      {questions.length === index && 
-                <Button variant="contained" color="primary">
-                  generate resources
-                </Button>
-      }
-    </>
-    )
+    return (
+      <>
+        {questions.length > index && (
+          <div className="questionCenter">
+            <SlidingQuestion
+              questionObject={this.questions[index]}
+              buttonClick={this.onResponse}
+            />
+          </div>
+        )}
+        {questions.length === index && (
+          <Button variant="contained" color="primary">
+            generate resources
+          </Button>
+        )}
+      </>
+    );
   }
 }
