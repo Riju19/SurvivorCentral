@@ -1,3 +1,5 @@
+// Link to Reetam's document: https://docs.google.com/document/d/1Heme95geyTnNuAhsTfmtlvsamruQPcxO69rr-jhAnqQ/edit#
+
 export const resourcesDetails = {
   hivAidsresources: {
     r1name: "AIDS Care Ocean State (ACOS)",
