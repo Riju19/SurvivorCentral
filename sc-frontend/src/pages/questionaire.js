@@ -16,6 +16,9 @@ export default class Questionaire extends Component {
 
     this.questions = questions;
     this.resources = resources;
+    Object.keys(this.resources).forEach(function (key) {
+      key = false;
+    });
   }
 
   // Control the question flow
