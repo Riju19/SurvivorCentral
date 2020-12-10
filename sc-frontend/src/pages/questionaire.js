@@ -5,6 +5,7 @@ import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion";
 import "../index.css";
 import { questions } from "../constants/questions.js";
 import { resources } from "../constants/resources.js";
+import {Link} from "react-router-dom";
 
 export default class Questionaire extends Component {
   constructor(props) {
@@ -319,8 +320,8 @@ export default class Questionaire extends Component {
         if (usersResponse === 0) {
           // Resources, then form is completed
           this.resources["NSPL"] = true;
-          this.setState({ index: index + 1 });
         }
+          this.setState({ index: index + 1 });
         break;
     }
   }
@@ -363,7 +364,12 @@ export default class Questionaire extends Component {
         )}
         {questions.length === index && (
           <Button variant="contained" color="primary">
+            <Link to={{
+              pathname: '/resources',
+              resources: this.resources
+            }}>
             generate resources
+            </Link>
           </Button>
         )}
       </>

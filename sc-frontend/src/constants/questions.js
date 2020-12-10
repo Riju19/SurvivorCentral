@@ -70,7 +70,7 @@ export const questions = [
     },
     {
       question: "Do you fear for your own physical safety (and/or your child's safety) from your abuser, and would you like to legally prevent your abuser from contacting/coming near you?",
-      responseChoices: "",
+      responseChoices: ["Yes", "No"],
       usersResponse: ""
     },
     {
