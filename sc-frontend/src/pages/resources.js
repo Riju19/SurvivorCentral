@@ -7,9 +7,9 @@ import { resources } from "../constants/resources.js";
 export default class Resources extends Component {
   constructor(props) {
     super(props);
-    this.state= {
-      resources: resources
-    }
+    this.state = {
+      resources: resources,
+    };
   }
   componentDidMount() {
     if (this.props.location.props) {

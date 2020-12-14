@@ -5,7 +5,7 @@ import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion";
 import "../index.css";
 import { questions } from "../constants/questions.js";
 import { resources } from "../constants/resources.js";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default class Questionaire extends Component {
   constructor(props) {
@@ -17,8 +17,10 @@ export default class Questionaire extends Component {
 
     this.questions = questions;
     this.resources = resources;
+
+    // This initializes all the keys to false, if the user clicks 'yes' a key will turn true
     Object.keys(this.resources).forEach(function (key) {
-      key = false;
+      resources[key] = false;
     });
   }
 
@@ -321,7 +323,7 @@ export default class Questionaire extends Component {
           // Resources, then form is completed
           this.resources["NSPL"] = true;
         }
-          this.setState({ index: index + 1 });
+        this.setState({ index: index + 1 });
         break;
     }
   }
@@ -364,11 +366,13 @@ export default class Questionaire extends Component {
         )}
         {questions.length === index && (
           <Button variant="contained" color="primary">
-            <Link to={{
-              pathname: '/resources',
-              resources: this.resources
-            }}>
-            generate resources
+            <Link
+              to={{
+                pathname: "/resources",
+                resources: this.resources,
+              }}
+            >
+              generate resources
             </Link>
           </Button>
         )}
