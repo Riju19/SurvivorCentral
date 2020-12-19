@@ -1,6 +1,7 @@
 //questionaire page
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
+import Typography from '@material-ui/core/Typography';
 import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion";
 import "../index.css";
 import { questions } from "../constants/questions.js";
@@ -12,7 +13,7 @@ export default class Questionaire extends Component {
     super(props);
 
     this.state = {
-      index: 1, //current question
+      index: 27, //current question
     };
 
     this.questions = questions;
@@ -354,6 +355,7 @@ export default class Questionaire extends Component {
 
   render() {
     const index = this.state.index;
+
     return (
       <>
         {questions.length > index && (
@@ -365,16 +367,19 @@ export default class Questionaire extends Component {
           </div>
         )}
         {questions.length === index && (
-          <Button variant="contained" color="primary">
-            <Link
+           <div className="questionCenter"> 
+           <Typography variant="h5" className="classes.question">
+            You have finished the Questionaire! Click below for your curated list of resources.
+            </Typography>
+           <Button variant="contained" className="buttonStyle" component={Link}
               to={{
                 pathname: "/resources",
                 resources: this.resources,
               }}
-            >
-              generate resources
-            </Link>
-          </Button>
+            > 
+            Click Here
+            </Button>
+            </div>
         )}
       </>
     );

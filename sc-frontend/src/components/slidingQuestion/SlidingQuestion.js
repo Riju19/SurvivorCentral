@@ -6,12 +6,37 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
+    question:{
+      flexGrow:1
+    },
+
+    buttonFormat:{
+      alignItems: "center",
+      display: "flex",
+      justifyContent: "center",
+    },
+
+    buttonStyles: {
+      background: '#7F0FAF',
+      borderRadius: '15px',
+      border: '20 px',
+      fontWeight: 'bold',
+      color: 'white',
+      height: 48,
+      padding: '10px 30px',
+    },
+
     answer: {
       textAlign: 'center',
-        },
+      marginTop: "10px",
+      alignContent: "center",
+      top: "50%",
+      left: "50%",
+    },
+    
     root: {
       textAlign: 'center',
-      padding: "5 rem",
+      padding: "20 rem",
     }
   }));
 
@@ -22,19 +47,19 @@ const SlidingQuestion = ({questionObject, buttonClick}) => { // input
 
     return(
         <Container className = {classes.root} component="main" maxWidth="xl">
-            <Typography component="h1" variant="h6">
+            <Typography variant="h5" className="classes.question">
                     {question}
             </Typography>       
-            <Grid container spacing={1}>
+            <Grid container  direction="row" alignItems="center" spacing={3} className={classes.answer}>
             {answer.length === 0 && (<Button variant="contained" color="primary" onClick={()=>buttonClick(0)}>
                   Next
                 </Button>)}
             {answer.length > 0 && (answer.map((answer,index) => (
-               <Grid item xs={4}>
-                <Button variant="contained" color="primary" onClick={()=>buttonClick(index)}>
+              <Grid container item xs={12} md={6} lg={3} spacing={1} className={classes.buttonFormat}>
+                <Button className={classes.buttonStyles} onClick={()=>buttonClick(index)}>
                   {answer}
                 </Button>
-                </Grid>
+              </Grid>
               )))}
             </Grid>
         </Container>
