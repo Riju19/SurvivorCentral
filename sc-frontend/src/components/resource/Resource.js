@@ -1,6 +1,6 @@
 import React from "react";
 
-function Resource(props) {
+const Resource = (props) => {
   // Map over props.details and print out each value
   return (
     <div>

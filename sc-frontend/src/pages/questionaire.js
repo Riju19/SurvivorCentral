@@ -13,7 +13,7 @@ export default class Questionaire extends Component {
     super(props);
 
     this.state = {
-      index: 27, //current question
+      index: 1, //current question
     };
 
     this.questions = questions;

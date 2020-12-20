@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Resource from "../components/resource/Resource";
 import { resourcesDetails } from "../constants/resource_details.js";
 import { resources } from "../constants/resources.js";
+import "../index.css";
 
 export default class Resources extends Component {
   constructor(props) {
@@ -20,13 +21,14 @@ export default class Resources extends Component {
 
   render() {
     const resources = this.state.resources;
+    const resourceKeys = Object.keys(resources);
     return (
       <div>
-        <div>
+        <div className="header">
           <h1>Resources</h1>
         </div>
         {resources != null &&
-          Object.keys(resources).map(function (keyName, keyIndex) {
+          resourceKeys.map(function (keyName) {
             // use keyName to get current key's name
             // and resources[keyName] to get its value
             return resources[keyName] ? (
