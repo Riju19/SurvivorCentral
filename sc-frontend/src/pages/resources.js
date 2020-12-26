@@ -1,8 +1,42 @@
 //render selected resources
-import React from "react";
+import React, { Component } from "react";
+import Resource from "../components/resource/Resource";
+import { resourcesDetails } from "../constants/resource_details.js";
+import { resources } from "../constants/resources.js";
 
-export const Resources = () => {
-  return <div> resource page </div>;
-};
+export default class Resources extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      resources: resources,
+    };
+  }
+  componentDidMount() {
+    if (this.props.location.props) {
+      console.log(this.props.location.resources);
+      this.setState(this.props.location.resources);
+    }
+  }
 
-export default Resources;
+  render() {
+    const resources = this.state.resources;
+    return (
+      <div>
+        <div>
+          <h1>Resources</h1>
+        </div>
+        {resources != null &&
+          Object.keys(resources).map(function (keyName, keyIndex) {
+            // use keyName to get current key's name
+            // and resources[keyName] to get its value
+            return resources[keyName] ? (
+              <Resource
+                name={keyName}
+                details={resourcesDetails[keyName]}
+              ></Resource>
+            ) : null;
+          })}
+      </div>
+    );
+  }
+}

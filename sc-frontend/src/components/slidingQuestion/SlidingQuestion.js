@@ -18,11 +18,10 @@ const useStyles = makeStyles((theme) => ({
 const SlidingQuestion = ({questionObject, buttonClick}) => { // input
     const classes = useStyles();
     const question = questionObject.question;
-    const answer=questionObject.responseChoices;
-    console.log(questionObject);
-    console.log(buttonClick)
+    const answer = questionObject.responseChoices;
+
     return(
-        <Container className={classes.root} component="main" maxWidth="xl">
+        <Container className = {classes.root} component="main" maxWidth="xl">
             <Typography component="h1" variant="h6">
                     {question}
             </Typography>       
