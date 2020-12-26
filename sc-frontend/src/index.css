@@ -14,9 +14,27 @@ code {
 
 .questionCenter {
   position: relative;
-  top: 2rem;
+  top: 10rem;
   margin: auto;
   width: 50%;
   border: 3px solid black;
-  padding: 10px;
+  padding: 30px;
+}
+
+.buttonStyle {
+  margin-top: 10px;
+  background: #7f0faf;
+  border-radius: 15px;
+  border: 20px;
+  font-weight: bold;
+  color: white;
+  height: 48;
+  padding: 10px 30px;
+}
+
+.header {
+  background: #7f0faf;
+  color: white;
+  padding: 0.5rem;
+  text-align: center;
 }

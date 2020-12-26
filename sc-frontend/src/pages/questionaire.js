@@ -4,6 +4,7 @@ import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion"
 import "../index.css"
 import APIHelper from "../APIHelper.js"
 import Button from "@material-ui/core/Button";
+import Typography from '@material-ui/core/Typography';
 import { questions } from "../constants/questions.js";
 import { resources } from "../constants/resources.js";
 import { Link } from "react-router-dom";
@@ -369,6 +370,7 @@ export default class Questionaire extends Component {
 
   render() {
     const index = this.state.index;
+
     return (
       <>
         {questions.length > index && (
@@ -380,16 +382,19 @@ export default class Questionaire extends Component {
           </div>
         )}
         {questions.length === index && (
-          <Button variant="contained" color="primary">
-            <Link
+           <div className="questionCenter"> 
+           <Typography variant="h5" className="classes.question">
+            You have finished the Questionaire! Click below for your curated list of resources.
+            </Typography>
+           <Button variant="contained" className="buttonStyle" component={Link}
               to={{
                 pathname: "/resources",
                 resources: this.resources,
               }}
-            >
-              generate resources
-            </Link>
-          </Button>
+            > 
+            Click Here
+            </Button>
+            </div>
         )}
       </>
     );
