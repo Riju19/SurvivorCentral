@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/todo-app", {
-  // connecting to the mongodb database name: "todo-app" locally
+mongoose.connect("mongodb://localhost/sc", {
+  // connecting to the mongodb database name: "sc" locally
   keepAlive: true, // keeping the connection alive
   useNewUrlParser: true,
   useUnifiedTopology: true,

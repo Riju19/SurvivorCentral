@@ -1,12 +1,14 @@
 //questionaire page
 import React, { Component } from "react";
+import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion"
+import "../index.css"
+import APIHelper from "../APIHelper.js"
 import Button from "@material-ui/core/Button";
-import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion";
-import "../index.css";
 import { questions } from "../constants/questions.js";
 import { resources } from "../constants/resources.js";
 import { Link } from "react-router-dom";
 
+let userResponses = []; 
 export default class Questionaire extends Component {
   constructor(props) {
     super(props);
@@ -329,11 +331,12 @@ export default class Questionaire extends Component {
   }
 
   // This function should be called when the user picks a response, and it should be sent the response
-  onResponse = (response) => {
+  onResponse=(response) => {
     let newQuestions = this.questions;
     const index = this.state.index;
     newQuestions[index].usersResponse = response;
-
+    userResponses.push({"question":index, "answer":response})
+    
     // Save the new response in state
     this.setState({
       questions: newQuestions,
@@ -344,7 +347,19 @@ export default class Questionaire extends Component {
     if (index === numberOfQuestions) {
       // There are no more questions, here we'll do 2 things:
       // 1. Push the questions array in state to the database
-      // 2. Redirect the user to the this.resources page, WITH the resources object
+      // 2. Redirect the user to the resources page
+
+      console.log("Storing values in Databse"+userResponses);
+      // fetch('http://localhost:3001/postResponses', {
+      //     method: 'post',
+      //     headers: {
+      //         'Accept': 'application/json',
+      //         'Content-Type': 'application/json'
+      //     },
+      //     body: JSON.stringify(userResponses)
+      // });
+      APIHelper.addResponses(userResponses)
+
       this.setState({ index: index + 1 });
     } else {
       // Call the questionManager function to load the next question

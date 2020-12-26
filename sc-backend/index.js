@@ -1,16 +1,18 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const db = require("./models/");
 
+const cors = require("cors")
+app.use(cors())
 app.use(bodyParser.json());
 
 function success(res, payload) {
   return res.status(200).json(payload);
 }
 
-app.get("/responses", async (req, res, next) => {
+app.get("/getResponses", async (req, res, next) => {
   try {
     const responses = await db.Response.find({});
     return success(res, responses);
@@ -19,7 +21,7 @@ app.get("/responses", async (req, res, next) => {
   }
 });
 
-app.post("/response", async (req, res, next) => {
+app.post("/postResponses", async (req, res, next) => {
   try {
     const response = await db.Response.create(req.body);
     return success(res, response);
@@ -28,7 +30,7 @@ app.post("/response", async (req, res, next) => {
   }
 });
 
-app.put("/response/:id", async (req, res, next) => {
+app.put("/updateResponse/:id", async (req, res, next) => {
   try {
     const response = await db.Response.findByIdAndUpdate(
       req.params.id,
@@ -42,7 +44,7 @@ app.put("/response/:id", async (req, res, next) => {
     next({ status: 400, message: "failed to update response" });
   }
 });
-app.delete("/response/:id", async (req, res, next) => {
+app.delete("/deleteResponse/:id", async (req, res, next) => {
   try {
     await db.Response.findByIdAndRemove(req.params.id);
     return success(res, "response deleted!");
