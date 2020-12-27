@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/sc", {
-  // connecting to the mongodb database name: "sc" locally
+
+const uri = "mongodb+srv://SurvivorCentral:SurvivorCentral!@cluster0.bfofj.mongodb.net/sc?retryWrites=true&w=majority";
+mongoose.connect(uri, {
   keepAlive: true, // keeping the connection alive
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-mongoose.set("debug", true); // enabling debugging information to be printed to the console for debugging purposes
-mongoose.Promise = Promise;
+  useUnifiedTopology: true
+})
+.catch(err => console.log(err))
+mongoose.set("debug", true);
 module.exports.Response = require("./responses"); // requiring the todo model that we just created in mongodb
+
