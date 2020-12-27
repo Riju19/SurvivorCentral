@@ -2,6 +2,8 @@ import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
+
 import IconButton from "@material-ui/core/IconButton";
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -27,8 +29,12 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   appBar: {
-    background: "black",
+    background: "white",
   },
+  hyperlink: {
+    color: "darkgray",
+    marginRight: theme.spacing(2),
+  }
 }));
 
 const NavBar = () => {
@@ -56,51 +62,25 @@ const NavBar = () => {
   }
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
+      {/* <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <img src={logo} alt="logo" className={classes.logo} />
-          <Typography variant="h6" color="inherit" className={classes.title}>
-            Survivor Central
-          </Typography>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-          </IconButton>
-
           <div>
-        <MenuIcon
-          ref={anchorRef}
-          aria-controls={open ? 'menu-list-grow' : undefined}
-          aria-haspopup="true"
-          onClick={handleToggle}
-        >
-          Toggle Menu Grow
-          </MenuIcon>
-        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-            >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem onClick={handleClose}>Main</MenuItem>
-                    <MenuItem onClick={handleClose}>Questionaire</MenuItem>
-                    <MenuItem onClick={handleClose}>Resources</MenuItem>
-                    
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </div>
+            <a className={classes.hyperlink}>Home</a>
+            <a className={classes.hyperlink}>Resources</a>
+          </div>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
+      <AppBar position="static" className={classes.appBar}>
+  <Toolbar>
+    <img src={logo} alt="logo" className={classes.logo} />
+    <Typography variant="h6" className={classes.title}>
+      
+    </Typography>
+    <Link href="https://survivorcentral.org/" className={classes.hyperlink}>Home</Link>
+    <Link href="https://survivorcentral.org/" className={classes.hyperlink}>Resources</Link>
+  </Toolbar>
+</AppBar>
     </div>
   );
 };
