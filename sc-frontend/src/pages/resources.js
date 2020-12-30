@@ -53,13 +53,13 @@ const Resources = (props) => {
       <div className="header">
         <h1>Resources</h1>
       </div>
-      <Grid item xs={4} container spacing={1}>
+      <Grid container spacing={1}>
         {resources != null &&
           resourceKeys.map(function (keyName) {
             // use keyName to get current key's name
             // and resources[keyName] to get its value
             return resources[keyName] ? (
-              <Grid container item xs={12} spacing={3}>
+              <Grid item xs={3} spacing={3}>
                 <Resource name={keyName} details={resourcesDetails[keyName]} />
               </Grid>
             ) : null;
