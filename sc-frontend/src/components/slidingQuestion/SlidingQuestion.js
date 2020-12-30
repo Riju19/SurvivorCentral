@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     buttonFormat:{
-      alignItems: "center",
+      alignItems: "center ",
       display: "flex",
       justifyContent: "center",
     },
@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     answer: {
       textAlign: 'center',
       marginTop: "10px",
-      alignContent: "center",
+      justifyContent: "center",
+      alignItems: "center",
       top: "50%",
       left: "50%",
     },

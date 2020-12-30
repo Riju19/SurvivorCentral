@@ -22,14 +22,14 @@ code {
 }
 
 .buttonStyle {
-  margin-top: 10px;
-  background: #7f0faf;
-  border-radius: 15px;
-  border: 20px;
-  font-weight: bold;
-  color: white;
-  height: 48;
-  padding: 10px 30px;
+  margin-top: 10px !important;
+  background: #7f0faf !important;
+  border-radius: 15px !important;
+  border: 20px !important;
+  font-weight: bold !important;
+  color: white !important;
+  height: 48 !important;
+  padding: 10px 30px !important;
 }
 
 .header {
