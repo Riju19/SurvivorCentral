@@ -34,21 +34,39 @@ const Resource = (props) => {
     <Flippy flipOnHover={true} flipDirection="horizontal">
       <FrontSide
         className={classes.root}
-        style={{ backgroundColor: "plum", borderRadius: 16 }}
+        style={{
+          backgroundColor: "plum",
+          borderRadius: 16,
+          textAlign: "center",
+        }}
       >
-        {props.name}
+        <h1>{props.details["title"]}</h1>
       </FrontSide>
       <BackSide
         className={classes.root}
         style={{ overflow: "scroll", borderRadius: 16 }}
       >
         <div>
-          <h2>{props.name}</h2>
           <Typography className={classes.root} noWrap>
             {Object.keys(props.details).map(function (keyName, keyIndex) {
               // use keyName to get current key's name
               // and props.details[keyName] to get its value
-              return <Typography noWrap>{props.details[keyName]}</Typography>;
+
+              return (
+                <Typography noWrap style={{ overflowWrap: "break-word" }}>
+                  {keyName.includes("website") ? (
+                    <a href={props.details[keyName]} style={{ color: "blue" }}>
+                      {props.details[keyName]}
+                    </a>
+                  ) : keyName.includes("name") ? (
+                    <h3>{props.details[keyName]}</h3>
+                  ) : keyName.includes("title") ? (
+                    <h1>{props.details[keyName]}</h1>
+                  ) : (
+                    props.details[keyName]
+                  )}
+                </Typography>
+              );
             })}
           </Typography>
         </div>
