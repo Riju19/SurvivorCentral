@@ -1,6 +1,12 @@
 // Link to Reetam's document: https://docs.google.com/document/d/1Heme95geyTnNuAhsTfmtlvsamruQPcxO69rr-jhAnqQ/edit#
 
 export const resourcesDetails = {
+  riCvcp: {
+    title: "RI CVCP",
+    website:
+      "http://treasury.ri.gov/programs/crime-victim-compensation-program/",
+    number: "(401) 462-7650",
+  },
   hivAidsresources: {
     title: "HIV and AIDS Resources",
 
@@ -134,12 +140,7 @@ export const resourcesDetails = {
     website: "https://victimsofcrime.org/",
     number: "(800) FYI-CALL",
   },
-  riCvcp: {
-    title: "RI CVCP",
-    website:
-      "http://treasury.ri.gov/programs/crime-victim-compensation-program/",
-    number: "(401) 462-7650",
-  },
+
   bradleyHospitalAndTidesFamilyService: {
     title: "Bradley Hospital And Tides Family Service",
     website: "https://www.bradleyhospital.org/parents-and-caregivers",
