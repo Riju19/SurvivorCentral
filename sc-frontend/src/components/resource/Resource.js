@@ -6,20 +6,12 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-
-// const useStyles = makeStyles((theme) =>
-//   createStyles({
-//     root: {
-//       '& > * + *': {
-//         marginLeft: theme.spacing(2),
-//       },
-//     },
-//   }),
-// );
+import Flippy, { FrontSide, BackSide } from "react-flippy";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    minWidth: 200,
+    minHeight: 250,
   },
   bullet: {
     display: "inline-block",
@@ -37,23 +29,23 @@ const useStyles = makeStyles({
 const Resource = (props) => {
   // Map over props.details and print out each value
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <Card className="classes.root">
-      <CardContent>
+    <Flippy flipOnHover={true} flipDirection="horizontal">
+      <FrontSide className={classes.root}>{props.name}</FrontSide>
+      <BackSide className={classes.root} style={{ overflow: "scroll" }}>
         <div>
           <h2>{props.name}</h2>
-          <Typography className={classes.root}>
+          <Typography className={classes.root} noWrap>
             {Object.keys(props.details).map(function (keyName, keyIndex) {
               // use keyName to get current key's name
               // and props.details[keyName] to get its value
-              return <Typography>{props.details[keyName]}</Typography>;
+              return <Typography noWrap>{props.details[keyName]}</Typography>;
             })}
           </Typography>
         </div>
-      </CardContent>
-    </Card>
+      </BackSide>
+    </Flippy>
   );
 };
 export default Resource;
