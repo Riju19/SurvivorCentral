@@ -10,7 +10,7 @@ import Flippy, { FrontSide, BackSide } from "react-flippy";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 200,
+    minWidth: 180,
     minHeight: 250,
   },
   bullet: {
@@ -32,8 +32,16 @@ const Resource = (props) => {
 
   return (
     <Flippy flipOnHover={true} flipDirection="horizontal">
-      <FrontSide className={classes.root}>{props.name}</FrontSide>
-      <BackSide className={classes.root} style={{ overflow: "scroll" }}>
+      <FrontSide
+        className={classes.root}
+        style={{ backgroundColor: "plum", borderRadius: 16 }}
+      >
+        {props.name}
+      </FrontSide>
+      <BackSide
+        className={classes.root}
+        style={{ overflow: "scroll", borderRadius: 16 }}
+      >
         <div>
           <h2>{props.name}</h2>
           <Typography className={classes.root} noWrap>

@@ -48,7 +48,7 @@ const Resources = (props) => {
       </div>
       <Grid
         container
-        spacing={4}
+        spacing={6}
         className={classes.gridContainer}
         justify="center"
       >
