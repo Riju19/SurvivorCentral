@@ -38,6 +38,9 @@ const Resource = (props) => {
           backgroundColor: "plum",
           borderRadius: 16,
           textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
         }}
       >
         <h1>{props.details["title"]}</h1>
