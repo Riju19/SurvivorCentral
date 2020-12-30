@@ -47,28 +47,33 @@ const Resource = (props) => {
       </FrontSide>
       <BackSide
         className={classes.root}
-        style={{ overflow: "scroll", borderRadius: 16 }}
+        style={{ overflow: "auto", borderRadius: 16 }}
       >
         <div>
-          <Typography className={classes.root} noWrap>
+          <Typography className={classes.root}>
             {Object.keys(props.details).map(function (keyName, keyIndex) {
               // use keyName to get current key's name
               // and props.details[keyName] to get its value
 
               return (
-                <Typography noWrap style={{ overflowWrap: "break-word" }}>
-                  {keyName.includes("website") ? (
-                    <a href={props.details[keyName]} style={{ color: "blue" }}>
-                      {props.details[keyName]}
-                    </a>
-                  ) : keyName.includes("name") ? (
-                    <h3>{props.details[keyName]}</h3>
-                  ) : keyName.includes("title") ? (
-                    <h1>{props.details[keyName]}</h1>
-                  ) : (
-                    props.details[keyName]
-                  )}
-                </Typography>
+                <div>
+                  <Typography>
+                    {keyName.includes("website") ? (
+                      <a
+                        href={props.details[keyName]}
+                        style={{ color: "blue" }}
+                      >
+                        {props.details[keyName]}
+                      </a>
+                    ) : keyName.includes("name") ? (
+                      <h3>{props.details[keyName]}</h3>
+                    ) : keyName.includes("title") ? (
+                      <h1>{props.details[keyName]}</h1>
+                    ) : (
+                      props.details[keyName]
+                    )}
+                  </Typography>
+                </div>
               );
             })}
           </Typography>
