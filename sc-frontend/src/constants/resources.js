@@ -25,7 +25,6 @@ export const resources = {
   homelessnessResources: true,
   helplineRI: true,
   CAP: true,
-  DHS: true,
   GLBTQDomesticViolenceProject: true,
   GLAD: true,
   youthPrideInc: true,

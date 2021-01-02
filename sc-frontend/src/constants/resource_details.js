@@ -224,7 +224,21 @@ export const resourcesDetails = {
       "Reduced fee and legal assistance for those with qualifying income",
   },
   legalAssistanceResources: {
-    // ???? No info in document
+    title: "Legal Counseling Restitution",
+    name: "CASA",
+    number: "(401) 458-3330",
+    info: "Court Appointed Special Advocate",
+    name2: "Rhode Island Legal Services",
+    number2: "(401) 274-2652 ext. 145",
+    info2: "Domestic Violence Unit",
+    info2_2: "Litigation, negotiations, advice",
+    name3: "Rhode Island Legal Services (Newport Office)",
+    number3: "(401) 846-2264",
+    name4: "Rhode Island Bar Association",
+    info4: "Lawyer Referral Service",
+    number4: "(401) 421-7799",
+    info4_2:
+      "Reduced fee and legal assistance for those with qualifying income",
   },
   victimbarLink: {
     title: "Victim Bar Link",
@@ -282,9 +296,6 @@ export const resourcesDetails = {
     title: "Community Action Association",
     website: "https://www.ricommunityaction.org/",
     number: "401-921-4968",
-  },
-  DHS: {
-    // ??? No info in document
   },
   GLBTQDomesticViolenceProject: {
     title: "GLBTQ Domestic Violence Project",
