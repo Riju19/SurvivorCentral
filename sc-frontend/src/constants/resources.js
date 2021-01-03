@@ -1,4 +1,5 @@
 export const resources = {
+  riCvcp: true,
   hivAidsresources: true,
   dayOne: true,
   sojournerHouse: true,
@@ -11,7 +12,6 @@ export const resources = {
   vineCrimeVictimAdvocate: true,
   dcyf: true,
   nationalCenterForVictimsOfCrime: true,
-  riCvcp: true,
   bradleyHospitalAndTidesFamilyService: true,
   familyServicesOfRiAndFamilyCommunityCarePartnership: true,
   dvPartnersUnderRICADVAndCounselingResources: true,
@@ -25,7 +25,6 @@ export const resources = {
   homelessnessResources: true,
   helplineRI: true,
   CAP: true,
-  DHS: true,
   GLBTQDomesticViolenceProject: true,
   GLAD: true,
   youthPrideInc: true,
