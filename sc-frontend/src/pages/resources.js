@@ -5,9 +5,7 @@ import { resourcesDetails } from "../constants/resource_details.js";
 import { resources as rsr } from "../constants/resources.js";
 import "../index.css";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 
 const Resources = (props) => {
   console.log(`PROPS: `);
@@ -37,7 +35,7 @@ const Resources = (props) => {
       console.log(props.location.resources);
       setResources(props.location.resources);
     }
-  }, [props.location.props]);
+  }, [props.location.props, props.location.resources]);
 
   const resourceKeys = Object.keys(resources);
 
