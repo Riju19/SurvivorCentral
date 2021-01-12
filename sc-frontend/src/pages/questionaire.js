@@ -1,15 +1,15 @@
 //questionaire page
 import React, { Component } from "react";
-import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion"
-import "../index.css"
-import APIHelper from "../APIHelper.js"
+import SlidingQuestion from "../components/slidingQuestion/SlidingQuestion";
+import "../index.css";
+import APIHelper from "../APIHelper.js";
 import Button from "@material-ui/core/Button";
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 import { questions } from "../constants/questions.js";
 import { resources } from "../constants/resources.js";
 import { Link } from "react-router-dom";
 
-let userResponses = []; 
+let userResponses = [];
 export default class Questionaire extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +25,22 @@ export default class Questionaire extends Component {
     Object.keys(this.resources).forEach(function (key) {
       resources[key] = false;
     });
+  }
+
+  componentWillUnmount() {
+    console.log("Storing values in Databse" + userResponses);
+    fetch("https://sc-backend.vercel.app/postResponses", {
+      method: "post",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      },
+
+      body: JSON.stringify(userResponses),
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    APIHelper.addResponses(userResponses);
   }
 
   // Control the question flow
@@ -332,12 +348,12 @@ export default class Questionaire extends Component {
   }
 
   // This function should be called when the user picks a response, and it should be sent the response
-  onResponse=(response) => {
+  onResponse = (response) => {
     let newQuestions = this.questions;
     const index = this.state.index;
     newQuestions[index].usersResponse = response;
-    userResponses.push({"question":index, "answer":response})
-    
+    userResponses.push({ question: index, answer: response });
+
     // Save the new response in state
     this.setState({
       questions: newQuestions,
@@ -350,16 +366,16 @@ export default class Questionaire extends Component {
       // 1. Push the questions array in state to the database
       // 2. Redirect the user to the resources page
 
-      console.log("Storing values in Databse"+userResponses);
-      // fetch('http://localhost:3001/postResponses', {
-      //     method: 'post',
-      //     headers: {
-      //         'Accept': 'application/json',
-      //         'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify(userResponses)
-      // });
-      APIHelper.addResponses(userResponses)
+      console.log("Storing values in Databse" + userResponses);
+      fetch("https://sc-backend.vercel.app/postResponses", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userResponses),
+      });
+      APIHelper.addResponses(userResponses);
 
       this.setState({ index: index + 1 });
     } else {
@@ -382,19 +398,23 @@ export default class Questionaire extends Component {
           </div>
         )}
         {questions.length === index && (
-           <div className="questionCenter"> 
-           <Typography variant="h5" className="classes.question">
-            You have finished the Questionaire! Click below for your curated list of resources.
+          <div className="questionCenter">
+            <Typography variant="h5" className="classes.question">
+              You have finished the Questionaire! Click below for your curated
+              list of resources.
             </Typography>
-           <Button variant="contained" className="buttonStyle" component={Link}
+            <Button
+              variant="contained"
+              className="buttonStyle"
+              component={Link}
               to={{
                 pathname: "/resources",
                 resources: this.resources,
               }}
-            > 
-            Click Here
+            >
+              Click Here
             </Button>
-            </div>
+          </div>
         )}
       </>
     );
