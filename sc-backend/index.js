@@ -4,13 +4,17 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3001;
 const db = require("./models/");
 
-const cors = require("cors")
-app.use(cors())
+const cors = require("cors");
+app.use(cors());
 app.use(bodyParser.json());
 
 function success(res, payload) {
   return res.status(200).json(payload);
 }
+
+app.get("/", (req, res) => {
+  res.send("Welcome to Survivor Central's backend!");
+});
 
 app.get("/getResponses", async (req, res, next) => {
   try {
