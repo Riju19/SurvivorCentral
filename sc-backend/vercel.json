@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "builds": [{ "src": "index.js", "use": "@now/node-server" }],
+  "routes": [
+    {
+      "src": "/getResponses",
+      "dest": "/index.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/postResponses",
+      "dest": "/index.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/updateResponse/:id",
+      "dest": "/index.js",
+      "methods": ["PUT"]
+    },
+    {
+      "src": "/deleteResponse/:id",
+      "dest": "/index.js",
+      "methods": ["DELETE"]
+    }
+  ]
+}
