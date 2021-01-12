@@ -3,10 +3,30 @@ const app = express();
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3001;
 const db = require("./models/");
+const mongoose = require("mongoose");
 
 const cors = require("cors");
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  })
+);
+
+const uri =
+  "mongodb+srv://SurvivorCentral:SurvivorCentral!@cluster0.bfofj.mongodb.net/sc?retryWrites=true&w=majority";
+mongoose
+  .connect(uri, {
+    keepAlive: true, // keeping the connection alive
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected to database"))
+  .catch((err) => console.log(err));
+mongoose.set("debug", true);
 
 function success(res, payload) {
   return res.status(200).json(payload);
