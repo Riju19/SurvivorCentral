@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { questions } from "../constants/questions.js";
 import { resources } from "../constants/resources.js";
 import { Link } from "react-router-dom";
+import LinearProgress from '@material-ui/core/LinearProgress'
 
 let userResponses = [];
 export default class Questionaire extends Component {
@@ -28,7 +29,7 @@ export default class Questionaire extends Component {
   }
 
   componentWillUnmount() {
-    console.log("Storing values in Databse" + userResponses);
+    console.log("Storing values in Database" + userResponses);
     fetch("https://sc-backend.vercel.app/postResponses", {
       method: "post",
       headers: {
@@ -385,10 +386,11 @@ export default class Questionaire extends Component {
   };
 
   render() {
-    const index = this.state.index;
+    const index = this.state.index;          
 
     return (
       <>
+        <LinearProgress variant="determinate" value={index/questions.length*100} />
         {questions.length > index && (
           <div className="questionCenter">
             <SlidingQuestion
