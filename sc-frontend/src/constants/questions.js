@@ -79,17 +79,17 @@ export const questions = [
       usersResponse: ""
     },
     {
+      question: "Would you be interested in free legal counseling to evaluate your options and potentially get restitution?",
+      responseChoices: ["Yes", "No"],
+      usersResponse: ""
+    },    
+    {
       question: "Are you currently an undocumented immigrant?",
       responseChoices: ["Yes", "No"],
       usersResponse: ""
     },
     {
       question: "Are you a survivor of human trafficking?",
-      responseChoices: ["Yes", "No"],
-      usersResponse: ""
-    },
-    {
-      question: "Would you be interested in free legal counseling to evaluate your options and potentially get restitution?",
       responseChoices: ["Yes", "No"],
       usersResponse: ""
     },

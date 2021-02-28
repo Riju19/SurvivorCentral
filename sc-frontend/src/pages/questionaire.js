@@ -8,7 +8,24 @@ import Typography from "@material-ui/core/Typography";
 import { questions } from "../constants/questions.js";
 import { resources } from "../constants/resources.js";
 import { Link } from "react-router-dom";
-import LinearProgress from '@material-ui/core/LinearProgress'
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
+
+function LinearProgressWithLabel(props) {
+  return (
+    <Box display="flex" alignItems="center">
+      <Box width="100%" mr={1}>
+        <LinearProgress variant="determinate" {...props} />
+      </Box>
+      <Box minWidth={35}>
+        <Typography variant="body2" color="textSecondary">{`${Math.round(
+          props.value,
+        )}%`}</Typography>
+      </Box>
+    </Box>
+  );
+}
 
 let userResponses = [];
 export default class Questionaire extends Component {
@@ -17,10 +34,16 @@ export default class Questionaire extends Component {
 
     this.state = {
       index: 1, //current question
+      lastQuestionAsked: false,
     };
 
     this.questions = questions;
     this.resources = resources;
+    this.lastQuestions = true;
+    this.lastQuestionObject ={
+      question: "The next questions deal with homelessness, LGBTQ+, disabilities and low income, do you identify with any of these communities?",
+      responseChoices: ["Yes", "No"],
+    }
 
     // This initializes all the keys to false, if the user clicks 'yes' a key will turn true
     Object.keys(this.resources).forEach(function (key) {
@@ -385,39 +408,58 @@ export default class Questionaire extends Component {
     }
   };
 
+  onLastQuestions = (response) => {
+    let index = 27;
+    let lastQuestionAsked = false;
+    if (response === 0){
+      lastQuestionAsked = true;
+    }else
+      index = questions.length;
+    
+    this.setState({index: index, lastQuestionAsked: lastQuestionAsked})
+  }
+
   render() {
     const index = this.state.index;          
+    const length = this.questions.length;
+    console.log(index)
 
     return (
       <>
-        <LinearProgress variant="determinate" value={index/questions.length*100} />
-        {questions.length > index && (
-          <div className="questionCenter">
-            <SlidingQuestion
-              questionObject={this.questions[index]}
-              buttonClick={this.onResponse}
-            />
-          </div>
-        )}
-        {questions.length === index && (
-          <div className="questionCenter">
-            <Typography variant="h5" className="classes.question">
-              You have finished the Questionaire! Click below for your curated
-              list of resources.
-            </Typography>
-            <Button
-              variant="contained"
-              className="buttonStyle"
-              component={Link}
-              to={{
-                pathname: "/resources",
-                resources: this.resources,
-              }}
-            >
-              Click Here
-            </Button>
-          </div>
-        )}
+        <LinearProgressWithLabel variant="determinate" value={index/length*100} />
+        <Container className ="questionCenter">
+          { (index === 17) && this.state.lastQuestionAsked === false? (
+             <SlidingQuestion
+             questionObject={this.lastQuestionObject}
+             buttonClick={this.onLastQuestions}
+              />
+            ):
+            length > index ?  (
+              <SlidingQuestion
+                questionObject={this.questions[index]}
+                buttonClick={this.onResponse}
+              />
+            ):
+            length === index? (
+              <>
+                <Typography variant="h5" className="classes.question">
+                  You have finished the Questionaire! Click below for your curated
+                  list of resources.
+                </Typography>
+                <Button
+                  variant="contained"
+                  className="buttonStyle"
+                  component={Link}
+                  to={{
+                    pathname: "/resources",
+                    resources: this.resources,
+                  }}
+                >
+                  Click Here
+                </Button>
+              </>
+          ): console.log("unknown position reached", index)}
+        </Container>
       </>
     );
   }
