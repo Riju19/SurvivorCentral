@@ -3,15 +3,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
-
-import IconButton from "@material-ui/core/IconButton";
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-import MenuIcon from "@material-ui/icons/Menu";
 import logo from "../../assets/logo.png";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -41,10 +32,6 @@ const NavBar = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
 
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
@@ -78,7 +65,7 @@ const NavBar = () => {
       
     </Typography>
     <Link href="https://survivorcentral.org/" className={classes.hyperlink}>Home</Link>
-    <Link href="https://survivorcentral.org/" className={classes.hyperlink}>Resources</Link>
+    <Link href="/resources" className={classes.hyperlink}>Resources</Link>
   </Toolbar>
 </AppBar>
     </div>
